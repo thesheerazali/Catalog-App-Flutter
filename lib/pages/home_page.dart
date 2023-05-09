@@ -70,11 +70,29 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: GridTile(
-                      header: Text(
-                        item.name.toString(),
+                      header: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: const BoxDecoration(
+                          color: Colors.deepPurple,
+                        ),
+                        child: Text(
+                          item.name.toString(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                      footer: Text(
-                        item.price.toString(),
+                    footer:  Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: const BoxDecoration(
+                          color: Colors.black,
+                        ),
+                        child: Text(
+                          item.price.toString(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                       child: Image.network(
                         item.imageUrl.toString(),
