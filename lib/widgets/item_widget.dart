@@ -13,7 +13,7 @@ class ItemWidget extends StatelessWidget {
         onTap: () {},
         leading: Image(
           image: NetworkImage(
-            item.image.toString(),
+            item.imageUrl.toString(),
           ),
         ),
        

@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:catalog_app_flutter/models/catalog.dart';
 import 'package:catalog_app_flutter/widgets/drawer.dart';
 
-import '../widgets/item_widget.dart';
-
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   loadData() async {
     await Future.delayed(
-      Duration(seconds: 2),
+      const Duration(seconds: 2),
     );
     final catalogJson =
         await rootBundle.loadString("assets/files/catalog.json");
@@ -47,36 +47,57 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text(
           "Catalog App",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
-       body: Padding(
+      body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: (CatalogModel.items != null && CatalogModel.items!.isNotEmpty)
-            // ? GridView.builder(
-            //     gridDelegate:
-            //         const SliverGridDelegateWithFixedCrossAxisCount(
-            //             crossAxisCount: 2),
-            //     itemBuilder: (context, index) {
-            //       final item = CatalogModel.items![index];
-            //       return GridTile(
-            //           child: Image.network(item.imageUrl.toString()));
-            //     },
-            //     itemCount: CatalogModel.items!.length,
-            //   )
-            ? ListView.builder(
-                itemCount: CatalogModel.items!.length,
+            ? GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                ),
                 itemBuilder: (context, index) {
-                  return ItemWidget(
-                    item: CatalogModel.items![index],
+                  final item = CatalogModel.items![index];
+                  return Card(
+                    clipBehavior: Clip.antiAlias,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: GridTile(
+                      header: Text(
+                        item.name.toString(),
+                      ),
+                      footer: Text(
+                        item.price.toString(),
+                      ),
+                      child: Image.network(
+                        item.imageUrl.toString(),
+                      ),
+                    ),
                   );
                 },
+                itemCount: CatalogModel.items!.length,
               )
+            // ?
+            // ListView.builder(
+            //     itemCount: CatalogModel.items!.length,
+            //     itemBuilder: (context, index) {
+            //       return ItemWidget(
+            //         item: CatalogModel.items![index],
+            //       );
+            //     },
+            //   )
             : const Center(
                 child: CircularProgressIndicator(),
               ),
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
     );
   }
 }

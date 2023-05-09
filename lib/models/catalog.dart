@@ -13,7 +13,7 @@ class Items {
   final String? desc;
   final num? price;
   final String? color;
-  final String? image;
+  final String? imageUrl;
 
   Items(
       {this.id,
@@ -21,7 +21,7 @@ class Items {
       this.desc,
       this.price,
       this.color,
-      this.image,
+      this.imageUrl,
        });
 
   factory Items.fromMap(Map<String, dynamic> map) {
@@ -31,7 +31,7 @@ class Items {
       desc: map["desc"],
       price: map["price"],
       color: map["color"],
-      image: map["image"],
+      imageUrl: map["imageUrl"],
     );
   }
 
@@ -41,6 +41,6 @@ class Items {
         "desc": desc,
         "price": price,
         "color": color,
-        "image": image,
+        "imageUrl": imageUrl,
       };
 }
