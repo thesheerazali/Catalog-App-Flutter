@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:catalog_app_flutter/models/catalog.dart';
-import 'package:catalog_app_flutter/widgets/drawer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../widgets/theme.dart';
@@ -125,7 +124,7 @@ class CatalogItem extends StatelessWidget {
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                                 MyTheme.darkBluishColor),
-                            shape: MaterialStateProperty.all(StadiumBorder())),
+                            shape: MaterialStateProperty.all(const StadiumBorder())),
                         onPressed: () {},
                         child: "Buy".text.make())
                   ],
