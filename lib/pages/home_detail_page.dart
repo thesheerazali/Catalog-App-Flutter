@@ -29,7 +29,7 @@ class HomeDetailPage extends StatelessWidget {
                     child: "Add to Cart".text.make())
                 .wh(120, 50)
           ],
-        ).p32(),
+        ).p20(),
       ),
       body: SafeArea(
         bottom: false,
@@ -60,6 +60,7 @@ class HomeDetailPage extends StatelessWidget {
                           .text
                           .textStyle(context.captionStyle)
                           .make()
+                          .scrollVertical()
                           .p16()
                     ],
                   ).py64()),
