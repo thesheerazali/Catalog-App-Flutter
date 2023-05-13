@@ -1,10 +1,14 @@
-
-
-
 class CatalogModel {
   static List<Items>? items;
 
- 
+  // Get Items by ID
+  static Items getById(int id) => items!.firstWhere(
+        (element) => element.id == id,
+      );
+
+  //Get Item By Postion
+  //
+  static Items getByPos(int pos) => items![pos];
 }
 
 class Items {
@@ -15,14 +19,14 @@ class Items {
   final String? color;
   final String? imageUrl;
 
-  Items(
-      {this.id,
-      this.name,
-      this.desc,
-      this.price,
-      this.color,
-      this.imageUrl,
-       });
+  Items({
+    this.id,
+    this.name,
+    this.desc,
+    this.price,
+    this.color,
+    this.imageUrl,
+  });
 
   factory Items.fromMap(Map<String, dynamic> map) {
     return Items(
