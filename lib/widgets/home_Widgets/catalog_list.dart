@@ -100,6 +100,8 @@ class __AddToCartState extends State<_AddToCart> {
           final _catalog = CatalogModel();
           final _cart = CartModel();
 
+          _cart.catalog = _catalog;
+
           _cart.add(widget.catalog);
           setState(() {});
         },
