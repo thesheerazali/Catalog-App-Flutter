@@ -1,8 +1,5 @@
 class CatalogModel {
-  static final _catModel = CatalogModel.internal();
-  CatalogModel.internal();
 
-  factory CatalogModel() => _catModel;
 
   static List<Items>? items;
 
