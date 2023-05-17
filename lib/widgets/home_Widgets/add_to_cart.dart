@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:catalog_app_flutter/core/store.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -9,29 +10,24 @@ import '../theme.dart';
 
 class AddToCart extends StatelessWidget {
   final Items catalog;
-   AddToCart({
+  AddToCart({
     Key? key,
     required this.catalog,
   }) : super(key: key);
- 
-  final _cart = CartModel();
 
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [AddMutation]);
+    final CartModel cart = (VxState.store as MyStore).cart;
     bool isInCart = false;
-    isInCart = _cart.items.contains(catalog);
+    isInCart = cart.items.contains(catalog);
     return ElevatedButton(
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(MyTheme.darkBluishColor),
           shape: MaterialStateProperty.all(const StadiumBorder())),
       onPressed: () {
         if (!isInCart) {
-          isInCart = isInCart.toggle();
-          final _catalog = CatalogModel();
-
-          _cart.catalog = _catalog;
-
-          _cart.add(catalog);
+          AddMutation(catalog);
           // setState(() {});
         }
       },
