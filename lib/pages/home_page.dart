@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:catalog_app_flutter/models/catalog.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../core/store.dart';
+import '../models/cart.dart';
 import '../widgets/theme.dart';
 import '../widgets/home_Widgets/catalog_header.dart';
 import '../widgets/home_Widgets/catalog_list.dart';
@@ -42,11 +44,20 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final CartModel cart = (VxState.store as MyStore).cart;
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
-          backgroundColor: MyTheme.darkBluishColor,
-          child: const Icon(CupertinoIcons.cart),
+        floatingActionButton: VxConsumer(
+          mutations: const {AddMutation, RemoveMutation},
+          builder: (context, store, status) => FloatingActionButton(
+            onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+            backgroundColor: MyTheme.darkBluishColor,
+            child: const Icon(CupertinoIcons.cart),
+          ).badge(
+              color: Colors.red,
+              size: 20,
+              count: cart.items.length,
+              textStyle: const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.bold)),
         ),
         backgroundColor: MyTheme.creemColor,
         body: SafeArea(
