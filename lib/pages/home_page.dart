@@ -47,8 +47,8 @@ class _HomePageState extends State<HomePage> {
     final CartModel cart = (VxState.store as MyStore).cart;
     return Scaffold(
         floatingActionButton: VxConsumer(
-          mutations: const {AddMutation, RemoveMutation},
-          builder: (context, store, status) => FloatingActionButton(
+          mutations: {AddMutation, RemoveMutation},
+          builder: (context, store, status) =>  FloatingActionButton(
             onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
             backgroundColor: MyTheme.darkBluishColor,
             child: const Icon(CupertinoIcons.cart),
@@ -56,8 +56,8 @@ class _HomePageState extends State<HomePage> {
               color: Colors.red,
               size: 20,
               count: cart.items.length,
-              textStyle: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.bold)),
+              textStyle:
+                 const TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         ),
         backgroundColor: MyTheme.creemColor,
         body: SafeArea(
